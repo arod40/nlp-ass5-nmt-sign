@@ -1,0 +1,4 @@
+outputs
+models
+*.json
+__pycache__
