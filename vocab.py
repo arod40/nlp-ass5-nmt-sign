@@ -227,8 +227,8 @@ if __name__ == "__main__":
     print("read in source sentences: %s" % args["--train-src"])
     print("read in target sentences: %s" % args["--train-tgt"])
 
-    src_sents = read_corpus(args["--train-src"], source="src")
-    tgt_sents = read_corpus_tokens(args["--train-tgt"], source="tgt")
+    src_sents = read_corpus_characters(args["--train-src"], source="src")
+    tgt_sents = read_corpus_characters(args["--train-tgt"], source="tgt")
 
     vocab = Vocab.build(
         src_sents, tgt_sents, int(args["--size"]), int(args["--freq-cutoff"])

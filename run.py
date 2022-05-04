@@ -114,11 +114,11 @@ def train(args: Dict):
     """ Train the NMT Model.
     @param args (Dict): args from cmd line
     """
-    train_data_src = read_corpus(args["--train-src"], source="src")
-    train_data_tgt = read_corpus_tokens(args["--train-tgt"], source="tgt")
+    train_data_src = read_corpus_characters(args["--train-src"], source="src")
+    train_data_tgt = read_corpus_characters(args["--train-tgt"], source="tgt")
 
-    dev_data_src = read_corpus(args["--dev-src"], source="src")
-    dev_data_tgt = read_corpus_tokens(args["--dev-tgt"], source="tgt")
+    dev_data_src = read_corpus_characters(args["--dev-src"], source="src")
+    dev_data_tgt = read_corpus_characters(args["--dev-tgt"], source="tgt")
 
     train_data = list(zip(train_data_src, train_data_tgt))
     dev_data = list(zip(dev_data_src, dev_data_tgt))
@@ -322,13 +322,13 @@ def decode(args: Dict[str, str]):
         "load test source sentences from [{}]".format(args["TEST_SOURCE_FILE"]),
         file=sys.stderr,
     )
-    test_data_src = read_corpus(args["TEST_SOURCE_FILE"], source="src")
+    test_data_src = read_corpus_characters(args["TEST_SOURCE_FILE"], source="src")
     if args["TEST_TARGET_FILE"]:
         print(
             "load test target sentences from [{}]".format(args["TEST_TARGET_FILE"]),
             file=sys.stderr,
         )
-        test_data_tgt = read_corpus_tokens(args["TEST_TARGET_FILE"], source="tgt")
+        test_data_tgt = read_corpus_characters(args["TEST_TARGET_FILE"], source="tgt")
 
     print("load model from {}".format(args["MODEL_PATH"]), file=sys.stderr)
     model = NMT.load(args["MODEL_PATH"])
